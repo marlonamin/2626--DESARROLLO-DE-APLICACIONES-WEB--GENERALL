@@ -90,17 +90,25 @@
         </section>
 
         <section id="contacto" class="mb-4">
-            <h2>Contacto</h2>
-
-            <form>
-                <input type="text" class="form-control mb-2" placeholder="Nombre">
-                <input type="email" class="form-control mb-2" placeholder="Correo electrónico">
-                <input type="text" class="form-control mb-2" placeholder="Asunto">
-                <textarea class="form-control mb-2" placeholder="Mensaje"></textarea>
-                <button class="btn btn-danger" type="submit">Enviar</button>
+            <h2>Registrar pedido</h2>
+        
+            <form id="formularioPedido">
+                <input type="text" id="nombre" class="form-control mb-2" placeholder="Nombre del cliente">
+                <input type="text" id="producto" class="form-control mb-2" placeholder="Producto">
+                <input type="text" id="categoria" class="form-control mb-2" placeholder="Categoría o tipo">
+                <button class="btn btn-danger" type="submit">Registrar</button>
             </form>
-
-            <p class="mt-3">Teléfono: 0967995373</p>
+        
+            <p id="mensaje" class="mt-3"></p>
+        
+            <h3 class="mt-4">Pedidos registrados</h3>
+            <div id="listaPedidos"></div>
+        
+            <p class="mt-3">Total de pedidos: <span id="totalPedidos">0</span></p>
+        
+            <hr>
+        
+            <p>Teléfono: 0967995373</p>
             <p>Correo: papipollos@gmail.com</p>
             <p>Dirección: Quevedo, Ecuador</p>
         </section>
@@ -116,5 +124,6 @@
         <p>Marlon Ávila - Desarrollo de Aplicaciones Web - 2026</p>
     </footer>
 
+    <script src="script.js"></script>
 </body>
 </html>
