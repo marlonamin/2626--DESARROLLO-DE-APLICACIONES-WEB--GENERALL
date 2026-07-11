@@ -92,11 +92,43 @@
         <section id="contacto" class="mb-4">
             <h2>Registrar pedido</h2>
         
-            <form id="formularioPedido">
-                <input type="text" id="nombre" class="form-control mb-2" placeholder="Nombre del cliente">
-                <input type="text" id="producto" class="form-control mb-2" placeholder="Producto">
-                <input type="text" id="categoria" class="form-control mb-2" placeholder="Categoría o tipo">
-                <button class="btn btn-danger" type="submit">Registrar</button>
+            <form id="formularioPedido" novalidate>
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre del cliente</label>
+                    <input
+                        type="text"
+                        id="nombre"
+                        class="form-control"
+                        placeholder="Escriba el nombre del cliente"
+                    >
+                <div id="errorNombre" class="text-danger"></div>
+                </div>
+                <div class="mb-3"
+                    <label for="producto" class="form-label">Descripción del pedido</label>
+                    <input
+                        type="text"
+                        id="producto"
+                        class="form-control"
+                        placeholder="Ejemplo: Papipollo con gaseosa"
+                    >
+                    <div id="errorProducto" class="text-danger"></div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="categoria" class="form-label">Categoría</label>
+                    <select id="categoria" class="form-select">
+                        <option value="">Seleccione una categoría</option>
+                        <option value="Papipollo">Papipollo</option>
+                        <option value="Hamburguesa">Hamburguesa</option>
+                        <option value="Salchipapa">Salchipapa</option>
+                    </select>
+                    <div id="errorCategoria" class="text-danger"></div>
+                </div>
+                
+                <button class="btn btn-danger" type="submit"
+                    Registrar
+                </button>
+
             </form>
         
             <p id="mensaje" class="mt-3"></p>
