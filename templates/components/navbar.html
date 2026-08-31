@@ -1,0 +1,58 @@
+<nav class="navbar navbar-expand-lg navbar-dark menu-principal sticky-top">
+    <div class="container">
+
+        <a
+            class="navbar-brand fw-bold fs-4"
+            href="{{ url_for('inicio') }}"
+        >
+            🍗 Papi Pollos
+        </a>
+
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#menuPrincipal"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div
+            class="collapse navbar-collapse"
+            id="menuPrincipal"
+        >
+            <div class="navbar-nav ms-auto">
+
+                <a
+                    class="nav-link"
+                    href="{{ url_for('inicio') }}"
+                >
+                    Inicio
+                </a>
+
+                <a
+                    class="nav-link"
+                    href="{{ url_for('inicio') }}#quienes"
+                >
+                    Quiénes Somos
+                </a>
+
+                <a
+                    class="nav-link"
+                    href="{{ url_for('ver_productos') }}"
+                >
+                    Productos
+                </a>
+
+                <a
+                    class="nav-link"
+                    href="{{ url_for('inicio') }}#contacto"
+                >
+                    Pedidos
+                </a>
+
+            </div>
+        </div>
+
+    </div>
+</nav>

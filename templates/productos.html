@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block title %}
+Productos | Papi Pollos
+{% endblock %}
+
+
+{% block content %}
+
+<section class="encabezado-productos py-5">
+
+    <div class="container text-center text-white">
+
+        <span class="badge bg-warning text-dark mb-3">
+            MENÚ
+        </span>
+
+        <h1 class="display-4 fw-bold">
+            Nuestros productos
+        </h1>
+
+        <p class="lead">
+            Conoce el menú disponible de {{ negocio.nombre }}.
+        </p>
+
+    </div>
+
+</section>
+
+
+<section class="container py-5">
+
+    <div class="row g-4">
+
+        {% for producto in productos %}
+
+        <div class="col-md-6 col-lg-4">
+
+            <div class="card tarjeta-producto h-100 border-0 shadow">
+
+                <div class="card-body text-center p-4">
+
+                    <div class="producto-icono">
+                        {{ producto.icono }}
+                    </div>
+
+                    <h2 class="h4 fw-bold">
+                        {{ producto.nombre }}
+                    </h2>
+
+                    <p>
+                        {{ producto.descripcion }}
+                    </p>
+
+                    <p class="precio">
+                        ${{ "%.2f"|format(producto.precio) }}
+                    </p>
+
+
+                    {% if producto.stock > 0 %}
+
+                    <div class="alert alert-success">
+                        Disponible
+                    </div>
+
+                    <p>
+                        Stock actual:
+                        <strong>{{ producto.stock }}</strong>
+                    </p>
+
+                    <a
+                        href="{{ url_for('inicio') }}#contacto"
+                        class="btn btn-warning"
+                    >
+                        Realizar pedido
+                    </a>
+
+                    {% else %}
+
+                    <div class="alert alert-danger">
+                        Producto agotado
+                    </div>
+
+                    <button
+                        class="btn btn-secondary"
+                        disabled
+                    >
+                        No disponible
+                    </button>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

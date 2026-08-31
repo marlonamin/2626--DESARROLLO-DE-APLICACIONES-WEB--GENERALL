@@ -1,0 +1,514 @@
+{% extends "base.html" %}
+
+{% block title %}
+Inicio | Papi Pollos
+{% endblock %}
+
+
+{% block content %}
+
+<!-- HERO -->
+<section class="hero">
+
+    <div class="container">
+
+        <div class="row align-items-center min-vh-75 g-5">
+
+            <div class="col-lg-6">
+
+                <span class="badge etiqueta-sabor mb-3">
+                    🔥 Sabor que conquista
+                </span>
+
+                <h1 class="display-3 fw-bold">
+                    {{ negocio.nombre | upper }}
+                </h1>
+
+                <p class="lead">
+                    {{ negocio.slogan }}
+                </p>
+
+                <p class="texto-hero">
+                    Disfruta nuestros papipollos, hamburguesas y
+                    salchipapas preparados con mucho sabor.
+                </p>
+
+                <a
+                    href="{{ url_for('ver_productos') }}"
+                    class="btn btn-warning btn-lg me-2"
+                >
+                    Ver menú
+                </a>
+
+                <a
+                    href="#contacto"
+                    class="btn btn-outline-light btn-lg"
+                >
+                    Hacer pedido
+                </a>
+
+            </div>
+
+            <div class="col-lg-6 text-center">
+
+                <img
+                    src="{{ url_for('static', filename='img/papipollo.jpg') }}"
+                    alt="Papi pollo"
+                    class="img-fluid imagen-hero"
+                >
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- QUIÉNES SOMOS -->
+<section id="quienes" class="py-5">
+
+    <div class="container">
+
+        <div class="row align-items-center g-4">
+
+            <div class="col-lg-7">
+
+                <span class="subtitulo">
+                    Conócenos
+                </span>
+
+                <h2 class="titulo-seccion">
+                    ¿Quiénes Somos?
+                </h2>
+
+                <p class="fs-5">
+                    Papi Pollos es un emprendimiento dedicado a ofrecer
+                    comida rápida con ingredientes frescos, precios
+                    accesibles y una atención cercana.
+                </p>
+
+                <p>
+                    Nuestra meta es brindar una experiencia agradable
+                    a cada cliente y convertir cada pedido en un momento
+                    para disfrutar.
+                </p>
+
+            </div>
+
+            <div class="col-lg-5">
+
+                <div class="card tarjeta-compromiso border-0 shadow">
+
+                    <div class="card-body p-4">
+
+                        <div class="icono-grande">
+                            ❤️
+                        </div>
+
+                        <h3>
+                            Nuestro compromiso
+                        </h3>
+
+                        <p class="mb-0">
+                            Calidad, sabor y buena atención en cada pedido.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PRODUCTOS DESTACADOS -->
+<section class="productos-destacados py-5">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="subtitulo">
+                Nuestro menú
+            </span>
+
+            <h2 class="titulo-seccion">
+                Productos destacados
+            </h2>
+
+            <p>
+                Estos datos vienen directamente desde Python.
+            </p>
+
+        </div>
+
+        <div class="row g-4">
+
+            {% for producto in productos %}
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="card tarjeta-producto h-100 border-0 shadow-sm">
+
+                    <div class="card-body p-4 text-center">
+
+                        <div class="producto-icono">
+                            {{ producto.icono }}
+                        </div>
+
+                        <h3 class="h4 fw-bold">
+                            {{ producto.nombre }}
+                        </h3>
+
+                        <p>
+                            {{ producto.descripcion }}
+                        </p>
+
+                        <p class="precio">
+                            ${{ "%.2f"|format(producto.precio) }}
+                        </p>
+
+
+                        {% if producto.stock > 0 %}
+
+                        <span class="badge bg-success mb-3">
+                            Disponible: {{ producto.stock }}
+                        </span>
+
+                        {% else %}
+
+                        <span class="badge bg-danger mb-3">
+                            Agotado
+                        </span>
+
+                        {% endif %}
+
+
+                        <div class="mt-3">
+
+                            {% if producto.stock > 0 %}
+
+                            <a
+                                href="#contacto"
+                                class="btn btn-warning"
+                            >
+                                Pedir
+                            </a>
+
+                            {% else %}
+
+                            <button
+                                class="btn btn-secondary"
+                                disabled
+                            >
+                                No disponible
+                            </button>
+
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        <div class="text-center mt-5">
+
+            <a
+                href="{{ url_for('ver_productos') }}"
+                class="btn btn-danger btn-lg"
+            >
+                Ver menú completo
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PROMOCIÓN -->
+{% if promocion.activa %}
+
+<section class="container my-5">
+
+    <div class="promocion shadow">
+
+        <div class="row align-items-center">
+
+            <div class="col-md-8">
+
+                <span class="badge bg-danger mb-2">
+                    PROMOCIÓN
+                </span>
+
+                <h2>
+                    {{ promocion.titulo }}
+                </h2>
+
+                <p class="mb-md-0">
+                    {{ promocion.descripcion }}
+                </p>
+
+            </div>
+
+            <div class="col-md-4 text-md-end">
+
+                <a
+                    href="#contacto"
+                    class="btn btn-danger btn-lg"
+                >
+                    Aprovechar
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endif %}
+
+
+<!-- FORMULARIO -->
+<section id="contacto" class="zona-pedidos py-5">
+
+    <div class="container">
+
+        <div class="row g-4">
+
+            <div class="col-lg-7">
+
+                <div class="card border-0 shadow">
+
+                    <div class="card-body p-4">
+
+                        <span class="subtitulo">
+                            Haz tu pedido
+                        </span>
+
+                        <h2 class="titulo-seccion mb-4">
+                            Registrar pedido
+                        </h2>
+
+                        <form
+                            id="formularioPedido"
+                            novalidate
+                        >
+
+                            <div class="row">
+
+                                <div class="col-md-6 mb-3">
+
+                                    <label
+                                        for="nombre"
+                                        class="form-label"
+                                    >
+                                        Nombre
+                                    </label>
+
+                                    <input
+                                        id="nombre"
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="Nombre del cliente"
+                                    >
+
+                                    <div
+                                        id="errorNombre"
+                                        class="text-danger texto-error"
+                                    ></div>
+
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+
+                                    <label
+                                        for="categoria"
+                                        class="form-label"
+                                    >
+                                        Categoría
+                                    </label>
+
+                                    <select
+                                        id="categoria"
+                                        class="form-select"
+                                    >
+
+                                        <option value="">
+                                            Seleccione
+                                        </option>
+
+                                        <option value="Papipollo">
+                                            Papipollo
+                                        </option>
+
+                                        <option value="Hamburguesa">
+                                            Hamburguesa
+                                        </option>
+
+                                        <option value="Salchipapa">
+                                            Salchipapa
+                                        </option>
+
+                                    </select>
+
+                                    <div
+                                        id="errorCategoria"
+                                        class="text-danger texto-error"
+                                    ></div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="mb-3">
+
+                                <label
+                                    for="producto"
+                                    class="form-label"
+                                >
+                                    Descripción
+                                </label>
+
+                                <input
+                                    id="producto"
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="Ejemplo: Papipollo con gaseosa"
+                                >
+
+                                <div
+                                    id="errorProducto"
+                                    class="text-danger texto-error"
+                                ></div>
+
+                            </div>
+
+                            <button
+                                type="submit"
+                                class="btn btn-danger btn-lg"
+                            >
+                                Registrar pedido
+                            </button>
+
+                            <div
+                                id="spinnerPedido"
+                                class="spinner-border text-danger ms-3 d-none"
+                                role="status"
+                            >
+                            </div>
+
+                        </form>
+
+                        <div
+                            id="mensaje"
+                            class="mt-3"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-5">
+
+                <div class="card tarjeta-pedidos border-0 shadow h-100">
+
+                    <div class="card-body p-4">
+
+                        <h2 class="h3">
+                            Pedidos registrados
+                        </h2>
+
+                        <p>
+                            Total:
+                            <strong id="totalPedidos">
+                                0
+                            </strong>
+                        </p>
+
+                        <div id="listaPedidos"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- MODAL -->
+<div
+    class="modal fade"
+    id="modalPedido"
+    tabindex="-1"
+>
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content">
+
+            <div class="modal-header bg-success text-white">
+
+                <h2 class="modal-title fs-5">
+                    Pedido registrado
+                </h2>
+
+                <button
+                    type="button"
+                    class="btn-close btn-close-white"
+                    data-bs-dismiss="modal"
+                ></button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <p>
+                    Tu pedido fue registrado correctamente.
+                </p>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                    class="btn btn-success"
+                    data-bs-dismiss="modal"
+                >
+                    Aceptar
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
