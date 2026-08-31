@@ -604,3 +604,39 @@ section {
         padding: 10px 16px;
     }
 }
+/* Formulario Flask-WTF */
+
+.formulario-flask {
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.formulario-flask::before {
+    content: "";
+    display: block;
+    height: 7px;
+    background: linear-gradient(
+        90deg,
+        #b71c1c,
+        #ffc107
+    );
+}
+
+.formulario-flask .form-label {
+    color: #8f1010;
+    font-weight: 800;
+}
+
+.formulario-flask .form-control,
+.formulario-flask .form-select {
+    min-height: 48px;
+}
+
+.encabezado-productos {
+    background:
+        linear-gradient(
+            135deg,
+            #8f1010,
+            #d32f2f
+        );
+}

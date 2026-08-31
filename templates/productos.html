@@ -9,19 +9,38 @@ Productos | Papi Pollos
 
 <section class="encabezado-productos py-5">
 
-    <div class="container text-center text-white">
+    <div class="container">
 
-        <span class="badge bg-warning text-dark mb-3">
-            MENÚ
-        </span>
+        <div class="row align-items-center">
 
-        <h1 class="display-4 fw-bold">
-            Nuestros productos
-        </h1>
+            <div class="col-md-8 text-white">
 
-        <p class="lead">
-            Conoce el menú disponible de {{ negocio.nombre }}.
-        </p>
+                <span class="badge bg-warning text-dark mb-3">
+                    MENÚ PAPI POLLOS
+                </span>
+
+                <h1 class="display-4 fw-bold">
+                    Nuestros productos
+                </h1>
+
+                <p class="lead mb-0">
+                    Elige tu favorito y disfruta nuestro sabor.
+                </p>
+
+            </div>
+
+            <div class="col-md-4 text-md-end mt-4 mt-md-0">
+
+                <a
+                    href="{{ url_for('nuevo_producto') }}"
+                    class="btn btn-warning btn-lg shadow"
+                >
+                    + Registrar producto
+                </a>
+
+            </div>
+
+        </div>
 
     </div>
 
@@ -30,25 +49,75 @@ Productos | Papi Pollos
 
 <section class="container py-5">
 
+
+    {% with mensajes = get_flashed_messages(with_categories=true) %}
+
+        {% if mensajes %}
+
+            {% for categoria, mensaje in mensajes %}
+
+            <div
+                class="alert alert-{{ categoria }} alert-dismissible fade show"
+                role="alert"
+            >
+
+                {{ mensaje }}
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert"
+                ></button>
+
+            </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+    {% endwith %}
+
+
+    <div class="text-center mb-5">
+
+        <span class="subtitulo-seccion">
+            Nuestro menú
+        </span>
+
+        <h2 class="titulo-seccion">
+            Opciones disponibles
+        </h2>
+
+        <p class="text-muted">
+            Actualmente tenemos {{ productos|length }} productos registrados.
+        </p>
+
+    </div>
+
+
     <div class="row g-4">
 
         {% for producto in productos %}
 
         <div class="col-md-6 col-lg-4">
 
-            <div class="card tarjeta-producto h-100 border-0 shadow">
+            <div class="card tarjeta-producto h-100">
 
-                <div class="card-body text-center p-4">
+                <div class="card-body p-4 text-center">
 
                     <div class="producto-icono">
                         {{ producto.icono }}
                     </div>
 
+                    <span class="badge bg-warning text-dark mb-3">
+                        {{ producto.categoria }}
+                    </span>
+
                     <h2 class="h4 fw-bold">
                         {{ producto.nombre }}
                     </h2>
 
-                    <p>
+                    <p class="text-muted">
                         {{ producto.descripcion }}
                     </p>
 
@@ -59,36 +128,42 @@ Productos | Papi Pollos
 
                     {% if producto.stock > 0 %}
 
-                    <div class="alert alert-success">
-                        Disponible
-                    </div>
-
-                    <p>
-                        Stock actual:
-                        <strong>{{ producto.stock }}</strong>
-                    </p>
-
-                    <a
-                        href="{{ url_for('inicio') }}#contacto"
-                        class="btn btn-warning"
-                    >
-                        Realizar pedido
-                    </a>
+                    <span class="badge bg-success mb-3">
+                        Disponible · {{ producto.stock }} unidades
+                    </span>
 
                     {% else %}
 
-                    <div class="alert alert-danger">
-                        Producto agotado
-                    </div>
-
-                    <button
-                        class="btn btn-secondary"
-                        disabled
-                    >
-                        No disponible
-                    </button>
+                    <span class="badge bg-danger mb-3">
+                        Agotado
+                    </span>
 
                     {% endif %}
+
+
+                    <div class="mt-3">
+
+                        {% if producto.stock > 0 %}
+
+                        <a
+                            href="{{ url_for('inicio') }}#contacto"
+                            class="btn btn-warning"
+                        >
+                            Pedir
+                        </a>
+
+                        {% else %}
+
+                        <button
+                            class="btn btn-secondary"
+                            disabled
+                        >
+                            No disponible
+                        </button>
+
+                        {% endif %}
+
+                    </div>
 
                 </div>
 
